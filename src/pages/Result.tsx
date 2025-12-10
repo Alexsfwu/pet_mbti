@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
 import { Heart, Share2, RotateCcw, Home } from 'lucide-react'
 import { summarizeMBTIWithLLM } from '../lib/llm'
+import { getDogImageUrl } from '../utils/image'
 import { LLMSummary } from '../types'
 
 interface LocationState {
@@ -97,7 +98,7 @@ const Result: React.FC = () => {
           <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 text-center">
             <div className="mb-6">
               <img
-                src={`https://copilot-cn.bytedance.net/api/ide/v1/text_to_image?prompt=${encodeURIComponent(`可爱${petName}，犬种：${breed}，${mbtiType}型狗狗卡通形象，${mbtiType.includes('E') ? '外向活泼' : '内向安静'}风格，温暖色调，手绘风格`)}&image_size=square_hd`}
+                src={getDogImageUrl(petName, breed, mbtiType)}
                 alt={`${petName}（${breed}） 的 ${mbtiType} 型狗狗`}
                 className="mx-auto w-48 h-48 object-cover rounded-full shadow-lg mb-6"
               />
